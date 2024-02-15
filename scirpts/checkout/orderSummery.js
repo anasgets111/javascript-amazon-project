@@ -6,6 +6,7 @@ import {
   deliveryOptions,
   getDeliveryOption,
 } from "../../data/deliveryOptions.js";
+import { renderPaymentSummery } from "./paymentSummery.js";
 
 export function renderOrderSummery() {
   let cartSummaryHTML = "";
@@ -116,6 +117,8 @@ export function renderOrderSummery() {
         `.js-cart-item-container-${productId}`
       );
       container.remove();
+      renderOrderSummery();
+      renderPaymentSummery();
     });
   });
 
@@ -125,6 +128,7 @@ export function renderOrderSummery() {
 
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummery();
+      renderPaymentSummery();
     });
   });
 }
