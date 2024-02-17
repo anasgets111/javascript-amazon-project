@@ -2,6 +2,7 @@ import { formatCurrency } from "../utils/money.js";
 import { cart } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import { getDeliveryOption } from "../../data/deliveryOptions.js";
+import { updateCartQuantity } from "../checkout.js";
 
 export function renderPaymentSummery() {
   let productPriceCents = 0;
@@ -17,7 +18,7 @@ export function renderPaymentSummery() {
   const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
   const taxCents = totalBeforeTaxCents * 0.1;
   const totalCents = totalBeforeTaxCents + taxCents;
-
+  let cartQuantity = updateCartQuantity();
   const PaymentSummeryHTML = `
   
         <div class="payment-summary-title">
@@ -25,7 +26,7 @@ export function renderPaymentSummery() {
       </div>
 
       <div class="payment-summary-row">
-        <div>Items (3):</div>
+        <div>Items (${cartQuantity}):</div>
         <div class="payment-summary-money">
         ${formatCurrency(productPriceCents)}</div>
       </div>
