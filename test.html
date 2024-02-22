@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current Time (Day, HH:MM:SS AM/PM)</title>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+</head>
+
+<body>
+  <p id="current-time"></p>
+  <script>
+    function updateTime() {
+      const dayjs = window.dayjs(); // Use global Day.js instance
+      const timeString = dayjs.format('dddd, h:mm:ss A');
+      document.getElementById("current-time").textContent = timeString;
+    }
+    setInterval(updateTime, 1000);
+    updateTime(); // Show initial time immediately
+  </script>
+</body>
+
+</html>
